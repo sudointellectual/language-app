@@ -55,6 +55,21 @@ function App() {
         a.value > b.value ? 1 : b.value > a.value ? -1 : 0,
       );
 
+      uniqueLangs.forEach((lang) => {        
+        let filteredCountries = data.filter((item) =>
+          Object.keys(item.languages).includes(lang.key),
+        );
+
+        filteredCountries.sort((a, b) =>
+          a.name.common > b.name.common
+            ? 1
+            : b.name.common > a.name.common
+              ? -1
+              : 0,
+        );
+
+        lang.countries = filteredCountries
+      })
       setLanguages(uniqueLangs);
     } catch (e) {
       console.log("error: ", e);
@@ -68,22 +83,6 @@ function App() {
 
     // set clicked button to active
     e.target.parentElement.classList.toggle("active");
-
-    // get filtered countries and sort them alphabetically
-    const country = e.target.value;
-    const filteredCountries = countries.filter((item) =>
-      Object.keys(item.languages).includes(country),
-    );
-
-    filteredCountries.sort((a, b) =>
-      a.name.common > b.name.common
-        ? 1
-        : b.name.common > a.name.common
-          ? -1
-          : 0,
-    );
-
-    setFilteredCountries(filteredCountries);
   };
 
   return (
@@ -102,8 +101,8 @@ function App() {
                 </button>
 
                 <ul className="dropdown">
-                  {filteredCountries &&
-                    filteredCountries.map((country, key) => (
+                  {language.countries &&
+                    language.countries.map((country, key) => (
                       <li key={key}>{country.name.common}</li>
                     ))}
                 </ul>
