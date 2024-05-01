@@ -1,41 +1,41 @@
 ul {
-  list-style: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 ul.wrapper {
-  width: 500px;
-  margin: 0 auto;
-  font: 1em sans-serif;
-  border: 1px solid black;
+    width: 500px;
+    margin: 0 auto;
+    font: 1em sans-serif;
+    border: 1px solid black;
 }
 
 button {
-  font-size: 1em;
-  border-radius: 0;
-  outline: 1px solid black;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
+    font-size: 1em;
+    border-radius: 0;
+    outline: 1px solid black;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-li, button {
-  width: 100%;
+li,
+button {
+    width: 100%;
 }
 
 .dropdown {
-  display: none;
+    display: none;
 }
 
 .dropdown li {
-  border-bottom: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .active button {
-  background-color: tomato;
-
+    background-color: tomato;
 }
 
 .active .dropdown {
-  display: block;
+    display: block;
 }
