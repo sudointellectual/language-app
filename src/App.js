@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 
+import Language from './Language'
+
 import './App.css'
 
 function App() {
     const [languages, setLanguages] = useState('')
+    const [activeLanguage, setActiveLanguage] = useState('')
 
     const fetchLanguages = async () => {
         try {
@@ -70,12 +73,7 @@ function App() {
     }
 
     const handleClick = (e) => {
-        // toggle button visibility off by default
-        const buttons = document.querySelectorAll('.language')
-        buttons.forEach((button) => button.classList.remove('active'))
-
-        // set clicked button to active
-        e.target.parentElement.classList.toggle('active')
+        setActiveLanguage(e.target.value)
     }
 
     useEffect(() => {
@@ -84,33 +82,18 @@ function App() {
 
     return (
         <div className="App">
-            <ul className="wrapper">
-                {languages &&
-                    languages.map((language, key) => {
-                        return (
-                            <li className="language" key={key}>
-                                <button
-                                    key={language.key}
-                                    value={language.key}
-                                    onClick={handleClick}
-                                >
-                                    {language.value} ({language.key})
-                                </button>
-
-                                <ul className="dropdown">
-                                    {language.countries &&
-                                        language.countries.map(
-                                            (country, key) => (
-                                                <li key={key}>
-                                                    {country.name.common}
-                                                </li>
-                                            )
-                                        )}
-                                </ul>
-                            </li>
-                        )
-                    })}
-            </ul>
+            {languages &&
+                languages.map((language, key) => {
+                    return (
+                        <Language
+                            className="language"
+                            key={key}
+                            language={language}
+                            handleClick={handleClick}
+                            activeLanguage={activeLanguage}
+                        />
+                    )
+                })}
         </div>
     )
 }
