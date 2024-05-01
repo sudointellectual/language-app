@@ -6,10 +6,9 @@ const Language = ({ language, handleClick, activeLanguage }) => {
             </button>
 
             <ul className="dropdown">
-                {language.countries &&
-                    language.countries.map((country, key) => (
-                        <li key={key}>{country.name.common}</li>
-                    ))}
+                {language.countries.map((country, key) => (
+                    <li key={key}>{country.name.common}</li>
+                ))}
             </ul>
         </div>
     )

@@ -5,8 +5,8 @@ import Language from './Language'
 import './App.css'
 
 function App() {
-    const [languages, setLanguages] = useState('')
-    const [activeLanguage, setActiveLanguage] = useState('')
+    const [languages, setLanguages] = useState([])
+    const [activeLanguage, setActiveLanguage] = useState(null)
 
     const fetchLanguages = async () => {
         try {
@@ -82,18 +82,17 @@ function App() {
 
     return (
         <div className="App">
-            {languages &&
-                languages.map((language, key) => {
-                    return (
-                        <Language
-                            className="language"
-                            key={key}
-                            language={language}
-                            handleClick={handleClick}
-                            activeLanguage={activeLanguage}
-                        />
-                    )
-                })}
+            {languages.map((language, key) => {
+                return (
+                    <Language
+                        className="language"
+                        key={key}
+                        language={language}
+                        handleClick={handleClick}
+                        activeLanguage={activeLanguage}
+                    />
+                )
+            })}
         </div>
     )
 }
